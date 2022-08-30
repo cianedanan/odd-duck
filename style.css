@@ -1,0 +1,47 @@
+body{
+	margin:0;
+	padding: 0;
+}
+main{
+	margin: 10px;
+	padding: 10px;
+}
+header{
+	border: 2px solid black;
+}
+
+.image{
+	width: 30%; 
+	height: 300px;
+	margin: 15px;
+	border: 2px solid black;
+}
+
+#top-container{
+	display: flex;
+	align-items: flex-start;
+	height: 410px;
+}
+
+#result-list{
+	border: 1px solid black;
+	margin: auto;
+}
+
+#result-containter{
+	width: 1000px;
+	height: 800px;
+	margin-right: 15px;
+	border: 5px solid black;
+}
+
+canvas{
+	width: 10px;
+	height: 10x;
+}
+
+footer{
+	border: 1px solid black;
+	margin: 5px;
+	padding: 5px;
+}
