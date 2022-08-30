@@ -4,10 +4,14 @@ let image2 = document.querySelector('div img:nth-child(2)');
 let image3 = document.querySelector('div img:nth-child(3)');
 
 let totalClicks = 0;
-let maxClicksAllowed = 25;
+let maxClicksAllowed = 3;
 let itemNames = [];
 let itemLikes =[];
 let itemViews = [];
+
+let lastItem1 = null;
+let lastItem2 = null;
+let lastItem3 = null;
 
 function Item(name, img) {
   this.name = name;
@@ -23,17 +27,37 @@ function getRandomNumber() {
   return Math.floor(Math.random() * Item.allItems.length);
 }
 
+function capitalize(str){
+  let whatever = str.split('');
+  whatever[0] = whatever[0].toUpperCase();
+  whatever = whatever.join('');
+  return whatever;
+}
+
 function renderItems() {
+
   let item1 = getRandomNumber();
   let item2 = getRandomNumber();
   let item3 = getRandomNumber();
 
-  while (item1 === item2) {
+  while(item1 === lastItem1 || item1 === lastItem2 || item1 === lastItem3){
+    item1 = getRandomNumber();
+  }
+  while (item1 === item2 || item2 === lastItem1 || item2 === lastItem2 || item2 === lastItem3 ) {
     item2 = getRandomNumber();
   }
-  while (item1 === item3 || item2 === item3) {
+  while (item1 === item3 || item2 === item3 || item3 === lastItem1 || item3 === lastItem2 || item3 === lastItem3 ) {
     item3 = getRandomNumber();
   }
+
+  console.log('after');
+  lastItem1 = item1;
+  console.log(lastItem1);
+  lastItem2 = item2;
+  console.log(lastItem2);
+  lastItem3 = item3;
+  console.log(lastItem3);
+
   image1.src = Item.allItems[item1].img;
   image2.src = Item.allItems[item2].img;
   image3.src = Item.allItems[item3].img;
@@ -48,7 +72,6 @@ function renderItems() {
 
 function itemClick(event) {
   totalClicks++;
-
   let clickItem = event.target.alt;
   for (let i = 0; i < Item.allItems.length; i++) {
     if (clickItem === Item.allItems[i].name) {
@@ -61,6 +84,7 @@ function itemClick(event) {
     image2.removeEventListener('click', itemClick);
     image3.removeEventListener('click', itemClick);
     renderChart();
+    const myChart = new Chart(canvasChart, config);
   } else {
     renderItems();
   }
@@ -68,7 +92,7 @@ function itemClick(event) {
 
 function renderChart() {
   for(let i = 0; i < Item.allItems.length; i++){
-    itemNames.push(Item.allItems[i].name.toUpperCase());
+    itemNames.push(capitalize(Item.allItems[i].name));
     itemLikes.push(Item.allItems[i].clicks);
     itemViews.push(Item.allItems[i].imgCount);
   }
@@ -104,7 +128,7 @@ const config = {
   },
 };
 let canvasChart = document.getElementById('myChart');
-const myChart = new Chart(canvasChart, config);
+
 
 new Item('bag', 'img/bag.jpg');
 new Item('banana', 'img/banana.jpg');

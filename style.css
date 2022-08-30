@@ -40,6 +40,11 @@ canvas{
 	height: 10x;
 }
 
+#chart-container{
+	width: 10px;
+	height: 10x;
+}
+
 footer{
 	border: 1px solid black;
 	margin: 5px;
