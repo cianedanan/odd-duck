@@ -4,14 +4,11 @@ let image2 = document.querySelector('div img:nth-child(2)');
 let image3 = document.querySelector('div img:nth-child(3)');
 
 let totalClicks = 0;
-let maxClicksAllowed = 3;
+let maxClicksAllowed = 25;
 let itemNames = [];
 let itemLikes =[];
 let itemViews = [];
-
-let lastItem1 = null;
-let lastItem2 = null;
-let lastItem3 = null;
+let lastImg = [];
 
 function Item(name, img) {
   this.name = name;
@@ -40,23 +37,20 @@ function renderItems() {
   let item2 = getRandomNumber();
   let item3 = getRandomNumber();
 
-  while(item1 === lastItem1 || item1 === lastItem2 || item1 === lastItem3){
+  while(item1 === lastImg[0] || item1 === lastImg[1] || item1 === lastImg[2]){
     item1 = getRandomNumber();
   }
-  while (item1 === item2 || item2 === lastItem1 || item2 === lastItem2 || item2 === lastItem3 ) {
+  while (item1 === item2 || item2 === lastImg[0] || item2 === lastImg[1] || item2 === lastImg[2] ) {
     item2 = getRandomNumber();
   }
-  while (item1 === item3 || item2 === item3 || item3 === lastItem1 || item3 === lastItem2 || item3 === lastItem3 ) {
+  while (item1 === item3 || item2 === item3 || item3 === lastImg[0] || item3 === lastImg[1] || item3 === lastImg[2] ) {
     item3 = getRandomNumber();
   }
 
-  console.log('after');
-  lastItem1 = item1;
-  console.log(lastItem1);
-  lastItem2 = item2;
-  console.log(lastItem2);
-  lastItem3 = item3;
-  console.log(lastItem3);
+  lastImg[0] = item1;
+  lastImg[1] = item2;
+  lastImg[2] = item3;
+  console.log(lastImg);
 
   image1.src = Item.allItems[item1].img;
   image2.src = Item.allItems[item2].img;
