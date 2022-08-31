@@ -50,3 +50,8 @@ footer{
 	margin: 5px;
 	padding: 5px;
 }
+
+#chart-container{
+	width: 100px;
+	height: 100px;
+}
