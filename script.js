@@ -4,7 +4,7 @@ let image2 = document.querySelector('div img:nth-child(2)');
 let image3 = document.querySelector('div img:nth-child(3)');
 
 let totalClicks = 0;
-let maxClicksAllowed = 25;
+let maxClicksAllowed = 5;
 let itemNames = [];
 let itemLikes =[];
 let itemViews = [];
@@ -15,10 +15,17 @@ function Item(name, img) {
   this.img = img;
   this.imgCount = 0;
   this.clicks = 0;
+  this.totalLikes = 0;
   Item.allItems.push(this);
 }
 
 Item.allItems = [];
+
+let maybeStored = localStorage.getItem('toStore');
+if (maybeStored) {
+  console.log(maybeStored);
+  Item.allItems = JSON.parse(maybeStored);
+}
 
 function getRandomNumber() {
   return Math.floor(Math.random() * Item.allItems.length);
@@ -50,7 +57,6 @@ function renderItems() {
   lastImg[0] = item1;
   lastImg[1] = item2;
   lastImg[2] = item3;
-  console.log(lastImg);
 
   image1.src = Item.allItems[item1].img;
   image2.src = Item.allItems[item2].img;
@@ -79,6 +85,9 @@ function itemClick(event) {
     image3.removeEventListener('click', itemClick);
     renderChart();
     const myChart = new Chart(canvasChart, config);
+    let toStore = Item.allItems;
+    console.log(toStore);
+    localStorage.setItem('toStore', JSON.stringify(toStore));
   } else {
     renderItems();
   }
@@ -122,7 +131,6 @@ const config = {
   },
 };
 let canvasChart = document.getElementById('myChart');
-
 
 new Item('bag', 'img/bag.jpg');
 new Item('banana', 'img/banana.jpg');
