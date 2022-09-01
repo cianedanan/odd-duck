@@ -1,4 +1,3 @@
-
 let image1 = document.querySelector('div img:first-child');
 let image2 = document.querySelector('div img:nth-child(2)');
 let image3 = document.querySelector('div img:nth-child(3)');
@@ -20,12 +19,6 @@ function Item(name, img) {
 }
 
 Item.allItems = [];
-
-let maybeStored = localStorage.getItem('toStore');
-if (maybeStored) {
-  console.log(maybeStored);
-  Item.allItems = JSON.parse(maybeStored);
-}
 
 function getRandomNumber() {
   return Math.floor(Math.random() * Item.allItems.length);
@@ -158,4 +151,8 @@ image1.addEventListener('click', itemClick);
 image2.addEventListener('click', itemClick);
 image3.addEventListener('click', itemClick);
 
-
+let maybeStored = localStorage.getItem('toStore');
+if (maybeStored) {
+  console.log(maybeStored);
+  Item.allItems = JSON.parse(maybeStored);
+}
