@@ -5,7 +5,7 @@ let image3 = document.querySelector('div img:nth-child(3)');
 let viewResult = document.getElementById('button-box');
 
 let totalClicks = 0;
-let maxClicksAllowed = 5;
+let maxClicksAllowed = 25;
 let itemNames = [];
 let itemLikes =[];
 let itemViews = [];
