@@ -2,8 +2,10 @@ let image1 = document.querySelector('div img:first-child');
 let image2 = document.querySelector('div img:nth-child(2)');
 let image3 = document.querySelector('div img:nth-child(3)');
 
+let viewResult = document.getElementById('button-box');
+
 let totalClicks = 0;
-let maxClicksAllowed = 25;
+let maxClicksAllowed = 5;
 let itemNames = [];
 let itemLikes =[];
 let itemViews = [];
@@ -76,11 +78,12 @@ function itemClick(event) {
     image1.removeEventListener('click', itemClick);
     image2.removeEventListener('click', itemClick);
     image3.removeEventListener('click', itemClick);
+    createButton();
     renderChart();
-    const myChart = new Chart(canvasChart, config);
     let toStore = Item.allItems;
     console.log(toStore);
     localStorage.setItem('toStore', JSON.stringify(toStore));
+    
   } else {
     renderItems();
   }
@@ -92,6 +95,20 @@ function renderChart() {
     itemLikes.push(Item.allItems[i].clicks);
     itemViews.push(Item.allItems[i].imgCount);
   }
+}
+
+function createButton(){
+  let but = document.createElement('button');
+  let butText = document.createTextNode('View results');
+  but.appendChild(butText);
+  viewResult.appendChild(but);
+  const att = document.createAttribute('onclick');
+  att.value = 'displayChart()';
+  document.getElementsByTagName('button')[0].setAttributeNode(att);
+}
+
+function displayChart(){
+  const myChart = new Chart(canvasChart, config);
 }
 
 const data = {
@@ -116,14 +133,11 @@ const config = {
   type: 'bar',
   data: data,
   options: {
-    scales: {
-      y: {
-        beginAtZero: true
-      }
-    }
+    maintainAspectRatio: false,
   },
 };
 let canvasChart = document.getElementById('myChart');
+
 
 new Item('bag', 'img/bag.jpg');
 new Item('banana', 'img/banana.jpg');

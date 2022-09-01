@@ -1,57 +1,127 @@
+html{
+	background-color: #FFC300;
+}
 body{
 	margin:0;
 	padding: 0;
 }
+
 main{
 	margin: 10px;
 	padding: 10px;
 }
+
 header{
-	border: 2px solid black;
+	background-color: #003566;
+	margin-top: 0;
+	box-shadow: 2px 2px rgba(0, 0, 0, 0.125);
+}
+
+header > h1{
+	color: white;
+	font-family: 'Fredoka One', cursive;
+	font-size: 50px;
+	padding: 25px;
+	margin-top: 0px;
+	
 }
 
 .image{
 	width: 300px; 
 	height: 300px;
 	margin: 15px;
-	border: 2px solid black;
+	border: 8px solid rgb(255, 255, 255);
+	box-shadow: 3px 3px rgba(0, 0, 0, 0.2);
+	border-radius: 8px;
+	transition-duration: 2s;
+}
+
+.image:hover{
+	border-radius:20%;
+	transform: rotateY(180deg);
+	cursor: pointer;
+
+	
+}
+
+footer{
+	width: 100%;
+	height: 100%;
+	background-color: aqua;
 }
 
 #top-container{
 	display: flex;
 	align-items: flex-start;
-	height: 410px;
-}
-
-#result-list{
-	border: 1px solid black;
-	margin: auto;
+	height: 1000px;
 }
 
 #result-containter{
-	width: 1000px;
-	height: 800px;
-	margin-right: 15px;
-	border: 5px solid black;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 500px;
+	height: 650px;
+	margin: 0px 15px 15px 15px;
+	border: 8px solid white;
+	border-radius: 8px;
+	box-shadow: 3px 3px rgba(0, 0, 0, 0.2);
+	background-color: white;
 }
 
-canvas{
-	width: 10px;
-	height: 10x;
+.chart-containter{
+	width: 400px;
+	height: 550px;
+	border: 10px;
+	margin: 15px
 }
 
-#chart-container{
-	width: 10px;
-	height: 10x;
+#botp{
+	margin-top: 15px;
+	width:1000px;
 }
 
-footer{
-	border: 1px solid black;
-	margin: 5px;
-	padding: 5px;
+p{
+	margin-left:15px;
+	font-family: 'Times New Roman', Times, serif;
+	color: #003566;
+	font-size: 24px;
+
 }
 
-#chart-container{
-	width: 100px;
-	height: 100px;
+#img-box{
+	width: 1200px;
+}
+
+#result-header{
+	font-family: Arial, Helvetica, sans-serif;
+	color: #003566;
+}
+
+#button-box{
+	display: flex;
+	justify-content: center;
+	margin-right: 150px; 
+	height: 60px;
+}
+
+button{
+	background-color: white;
+	box-shadow: 2px 2px rgba(0, 0, 0, 0.125);
+	color:#003566;
+	font-family: Arial, Helvetica, sans-serif;
+	width: 200px;
+	height: 30px;
+	border-radius: 10px;
+	border:0px;
+	font-size: 20px;
+	margin:15px
+
+}
+
+button:hover{
+	background-color:#003566;
+	color:white;
+	cursor: pointer;
 }
