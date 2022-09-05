@@ -1,9 +1,12 @@
+
+//Selects all images
 let image1 = document.querySelector('div img:first-child');
 let image2 = document.querySelector('div img:nth-child(2)');
 let image3 = document.querySelector('div img:nth-child(3)');
 
 let viewResult = document.getElementById('button-box');
 
+//Declares global variables
 let totalClicks = 0;
 let maxClicksAllowed = 25;
 let itemNames = [];
@@ -11,6 +14,7 @@ let itemLikes =[];
 let itemViews = [];
 let lastImg = [];
 
+//Creates a contructor
 function Item(name, img) {
   this.name = name;
   this.img = img;
@@ -22,17 +26,20 @@ function Item(name, img) {
 
 Item.allItems = [];
 
+//Returns a random number for the lenth of Item.allItems array
 function getRandomNumber() {
   return Math.floor(Math.random() * Item.allItems.length);
 }
 
+//Takes a string and capitalizes the first letter
 function capitalize(str){
-  let whatever = str.split('');
-  whatever[0] = whatever[0].toUpperCase();
-  whatever = whatever.join('');
-  return whatever;
+  let cap = str.split('');
+  cap[0] = cap[0].toUpperCase();
+  cap = cap.join('');
+  return cap;
 }
 
+//Renders three random images that aren't identical to eachother or the last rendered images while tracking the amount of times an image was viewed
 function renderItems() {
 
   let item1 = getRandomNumber();
@@ -65,6 +72,9 @@ function renderItems() {
   Item.allItems[item3].imgCount++;
 }
 
+//Keeps track of total amount of clicks and amount of clicks per image.
+//If the max amount of clicks are reached, the 3 images will no longer be clickable, a button for loading the chart is rendered, the data is stored into local storage and the arrays for the chart data are filled.
+//If the max amount of clicks aren't reached renderItems is ran again.
 function itemClick(event) {
   totalClicks++;
   let clickItem = event.target.alt;
@@ -81,14 +91,13 @@ function itemClick(event) {
     createButton();
     renderChart();
     let toStore = Item.allItems;
-    console.log(toStore);
     localStorage.setItem('toStore', JSON.stringify(toStore));
-    
   } else {
     renderItems();
   }
 }
 
+//Pushes the names, likes and views into seperate global arrays
 function renderChart() {
   for(let i = 0; i < Item.allItems.length; i++){
     itemNames.push(capitalize(Item.allItems[i].name));
@@ -97,6 +106,7 @@ function renderChart() {
   }
 }
 
+//Creates a button using DOM that when pushed displays the chart
 function createButton(){
   let but = document.createElement('button');
   let butText = document.createTextNode('View results');
@@ -107,10 +117,12 @@ function createButton(){
   document.getElementsByTagName('button')[0].setAttributeNode(att);
 }
 
+//Displays the chart when called
 function displayChart(){
   const myChart = new Chart(canvasChart, config);
 }
 
+//Loads the chart with data from the global arrays
 const data = {
   labels: itemNames,
   datasets: [{
@@ -138,7 +150,7 @@ const config = {
 };
 let canvasChart = document.getElementById('myChart');
 
-
+//Creates new objects using the Item contructor function
 new Item('bag', 'img/bag.jpg');
 new Item('banana', 'img/banana.jpg');
 new Item('bathroom', 'img/bathroom.jpg');
@@ -161,10 +173,12 @@ new Item('wine-glass','img/wine-glass.jpg');
 
 renderItems();
 
+//Runs itemClick whenever image 1, 2, or 3 are clicked
 image1.addEventListener('click', itemClick);
 image2.addEventListener('click', itemClick);
 image3.addEventListener('click', itemClick);
 
+//Gets the data from local storage
 let maybeStored = localStorage.getItem('toStore');
 if (maybeStored) {
   console.log(maybeStored);
