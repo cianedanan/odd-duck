@@ -1,6 +1,7 @@
 html{
 	background-color: #FFC300;
 }
+
 body{
 	margin:0;
 	padding: 0;
@@ -33,21 +34,13 @@ header > h1{
 	border: 8px solid rgb(255, 255, 255);
 	box-shadow: 3px 3px rgba(0, 0, 0, 0.2);
 	border-radius: 8px;
-	transition-duration: 2s;
+	transition-duration: 4s;
 }
 
 .image:hover{
 	border-radius:20%;
-	transform: rotateY(180deg);
+	transform: rotateY(360deg);
 	cursor: pointer;
-
-	
-}
-
-footer{
-	width: 100%;
-	height: 100%;
-	background-color: aqua;
 }
 
 #top-container{
@@ -87,7 +80,6 @@ p{
 	font-family: 'Times New Roman', Times, serif;
 	color: #003566;
 	font-size: 24px;
-
 }
 
 #img-box{
@@ -116,12 +108,62 @@ button{
 	border-radius: 10px;
 	border:0px;
 	font-size: 20px;
-	margin:15px
-
+	margin:15px;
+	
 }
 
 button:hover{
 	background-color:#003566;
 	color:white;
 	cursor: pointer;
+}
+
+#feeter{
+	display: flex;
+	text-align: center;
+	align-content: flex-start;
+	flex-direction: column;
+	margin-top: 50px;
+}
+
+footer{
+	display: flex;
+	text-align: center;
+	justify-content: center;
+	color: white;
+	display:flex;
+	margin-top: 50px;
+	min-height: 100vh;
+	background-color: #003566;
+	width: 100%;
+}
+
+#copyright{
+	font-family: 'Times New Roman', Times, serif;
+	font-size: 20px;
+	color: white;
+	margin:0;
+	padding: 0;
+}
+
+#footHead{
+	font-family:'Fredoka One', cursive;
+	font-size: 35px;
+	margin: 0;
+	padding-bottom: 0;
+	padding:0;
+}
+
+#feetlink{
+	margin: 0px;
+	padding: 0px;
+}
+
+#feetlink > a{
+	text-transform: capitalize;
+	padding: 4px;
+	margin: 2px;
+	font-family: Quicksand, Arial, Helvetica, sans-serif;
+	color: white;
+	min-width: 1000px;
 }
